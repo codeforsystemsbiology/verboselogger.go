@@ -1,0 +1,21 @@
+Extension of Go Lang logger that provides different levels of verbosity (DEBUG, WARN).
+
+Install by running:
+
+    goinstall github.com/codeforsystemsbiology.org/verboselogger.go
+
+Demo Code:
+
+    import (
+        "github.com/codeforsystemsbiology/verboselogger.go"
+    )
+
+    func main() {
+        logger := NewVerboseLogger(true, nil, "")
+
+        logger.Debug("message 1: %v", "hooray")
+        logger.Debug("message 2")
+
+        err := os.NewError("test error")
+        logger.Warn(err)
+    }
