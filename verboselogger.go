@@ -28,12 +28,13 @@ import (
 
 // constructs a new verbose logger that wraps a standard out logger
 func NewVerboseLogger(verbose bool, out io.Writer, prefix string) *VerboseLogger {
-    if out == nil {
-        out = os.Stdout
-    }
-    flags := log.LstdFlags|log.Lshortfile
+	if out == nil {
+		out = os.Stdout
+	}
+	flags := log.LstdFlags | log.Lshortfile
 	return &VerboseLogger{log.New(out, prefix, flags), verbose}
 }
+
 // extends log.Logger to add functions for verbose logging control and warning
 type VerboseLogger struct {
 	*log.Logger
@@ -45,6 +46,6 @@ func (this *VerboseLogger) Debug(format string, a ...interface{}) {
 		this.Output(2, fmt.Sprintf(format, a...))
 	}
 }
-func (this *VerboseLogger) Warn(err os.Error) {
+func (this *VerboseLogger) Warn(err error) {
 	this.Output(2, fmt.Sprintf("[WARN] %v", err))
 }
